@@ -456,6 +456,28 @@ input.num { font-family: var(--font-num); letter-spacing: .02em; }
 .site-footer p { margin: 0 0 6px; }
 .site-footer .related { margin-top: 10px; font-size: 12.5px; opacity: .8; }
 .site-footer .related a { white-space: nowrap; }
+.site-footer .footer-links { margin: 0 0 6px; }
+.site-footer .footer-links a { color: var(--c-accent); text-decoration: none; }
+.site-footer .footer-links a:hover { text-decoration: underline; }
+
+/* ---------------- 書き方ガイドへの内部リンク ---------------- */
+
+.guide-nav-h2 {
+  margin: 30px 0 12px;
+  font-size: 16px;
+  color: var(--c-text);
+}
+.guide-nav { list-style: none; display: grid; gap: 12px; margin: 0; padding: 0; }
+.guide-nav li {
+  padding: 14px 16px;
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+.guide-nav a { color: var(--c-accent); font-weight: 600; text-decoration: none; }
+.guide-nav a:hover { text-decoration: underline; }
+.guide-nav-desc { display: block; margin-top: 4px; font-size: 12.5px; line-height: 1.7; color: var(--c-text-muted); }
 
 /* ---------------- フィードバックFAB（右下固定・常時表示） ---------------- */
 .feedback-fab {
