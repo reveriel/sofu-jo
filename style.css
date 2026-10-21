@@ -271,7 +271,16 @@ input.num { font-family: var(--font-num); letter-spacing: .02em; }
 
 /* ---------------- プレビュー ---------------- */
 
-.preview-pane { min-width: 0; }
+.preview-pane {
+  min-width: 0;
+  position: sticky;
+  top: 88px;
+  align-self: start;
+  max-height: calc(100vh - 104px);
+  overflow-y: auto;
+  padding: 2px 4px 16px;
+  scrollbar-gutter: stable;
+}
 
 .preview-bar {
   display: flex;
@@ -527,7 +536,13 @@ input.num { font-family: var(--font-num); letter-spacing: .02em; }
 
 @media (max-width: 980px) {
   .layout { grid-template-columns: 1fr; gap: 22px; }
-  .preview-pane { order: 2; }
+  .preview-pane {
+    order: 2;
+    position: static;
+    max-height: none;
+    overflow: visible;
+    padding: 0;
+  }
   .paper { width: 100%; min-height: 0; padding: 22px 20px; }
   .doc-title { font-size: 19px; }
   .doc-parties { flex-direction: column; gap: 5mm; }
@@ -579,7 +594,13 @@ input.num { font-family: var(--font-num); letter-spacing: .02em; }
     margin: 0 !important;
   }
 
-  .preview-pane { display: block !important; }
+  .preview-pane {
+    display: block !important;
+    position: static !important;
+    max-height: none !important;
+    overflow: visible !important;
+    padding: 0 !important;
+  }
   .paper-wrap { overflow: visible !important; padding: 0 !important; }
 
   .paper {
