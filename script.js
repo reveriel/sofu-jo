@@ -187,6 +187,16 @@
     optSeireki:  { ja: '西暦', zh: '西历' },
     optWareki:   { ja: '和暦', zh: '和历' },
 
+    legendFormat:{ ja: '書式', zh: '排版' },
+    lblFont:     { ja: '字体', zh: '字体' },
+    lblWeight:   { ja: '太字', zh: '粗体' },
+    optGothic:   { ja: 'ゴシック体', zh: '黑体' },
+    optMincho:   { ja: '明朝体', zh: '宋体' },
+    optNormal:   { ja: '通常', zh: '常规' },
+    optBold:     { ja: '太字', zh: '加粗' },
+    hintFormat:  { ja: '字体と太字はプレビューと印刷結果に反映されます。既定のままでも従来と同じ見た目です。',
+                   zh: '字体与粗体会反映到预览和打印结果。保持默认时与以前的外观一致。' },
+
     legendTo:    { ja: '宛先（送る相手）', zh: '收件方（收件人）' },
     lblToCompany:{ ja: '会社名・組織名', zh: '公司名 / 组织名' },
     phToCompany: { ja: '例：株式会社山田商事', zh: '例：株式会社山田商事' },
@@ -334,7 +344,9 @@
 
   var state = {
     template: 'fax',
-    dateFormat: 'seireki'
+    dateFormat: 'seireki',
+    fontFormat: 'gothic',
+    weightFormat: 'normal'
   };
 
   var FIELD_IDS = ['date', 'toCompany', 'toDept', 'toName', 'toFax',
@@ -410,8 +422,17 @@
     }).join('') + '</div>';
   }
 
+  function applyFormat() {
+    var paper = $('paper');
+    if (!paper) return;
+    paper.classList.toggle('font-mincho', state.fontFormat === 'mincho');
+    paper.classList.toggle('font-gothic', state.fontFormat !== 'mincho');
+    paper.classList.toggle('weight-bold', state.weightFormat === 'bold');
+  }
+
   function render() {
     readForm();
+    applyFormat();
     var t = TEMPLATES[state.template] || TEMPLATES.fax;
     var h = toCount(state.honpyo);
     var tp = toCount(state.tenpu);
@@ -517,6 +538,26 @@
     if (!silent) render();
   }
 
+  function setFontFormat(mode, silent) {
+    state.fontFormat = (mode === 'mincho') ? 'mincho' : 'gothic';
+    document.querySelectorAll('.seg-btn[data-fontfmt]').forEach(function (b) {
+      var on = b.getAttribute('data-fontfmt') === state.fontFormat;
+      b.classList.toggle('is-active', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    if (!silent) render();
+  }
+
+  function setWeightFormat(mode, silent) {
+    state.weightFormat = (mode === 'bold') ? 'bold' : 'normal';
+    document.querySelectorAll('.seg-btn[data-weightfmt]').forEach(function (b) {
+      var on = b.getAttribute('data-weightfmt') === state.weightFormat;
+      b.classList.toggle('is-active', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    if (!silent) render();
+  }
+
   /* ---------------------------------------------------------
      共有
      --------------------------------------------------------- */
@@ -575,6 +616,8 @@
     buildPresetOptions();
     setTemplate('fax', true);
     setDateFormat('seireki', true);
+    setFontFormat('gothic', true);
+    setWeightFormat('normal', true);
 
     // 入力のたびに再描画
     var form = document.querySelector('.form-pane');
@@ -598,6 +641,14 @@
     // 日付表示の切替
     document.querySelectorAll('.seg-btn[data-datefmt]').forEach(function (b) {
       b.addEventListener('click', function () { setDateFormat(b.getAttribute('data-datefmt')); });
+    });
+
+    // 書式（字体・太字）の切替
+    document.querySelectorAll('.seg-btn[data-fontfmt]').forEach(function (b) {
+      b.addEventListener('click', function () { setFontFormat(b.getAttribute('data-fontfmt')); });
+    });
+    document.querySelectorAll('.seg-btn[data-weightfmt]').forEach(function (b) {
+      b.addEventListener('click', function () { setWeightFormat(b.getAttribute('data-weightfmt')); });
     });
 
     // 本文プリセット
@@ -640,6 +691,8 @@
         $('useKanji').checked = false;
         setTemplate('fax', true);
         setDateFormat('seireki', true);
+        setFontFormat('gothic', true);
+        setWeightFormat('normal', true);
         syncPresetSelect();
         render();
       });

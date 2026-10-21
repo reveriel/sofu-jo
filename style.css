@@ -307,6 +307,18 @@ input.num { font-family: var(--font-num); letter-spacing: .02em; }
   overflow: hidden;
 }
 
+/* 書式: 字体（紙面ルートに class を付与。印刷時もそのまま継承される） */
+.paper.font-mincho {
+  font-family: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", YuMincho, serif;
+}
+/* 既定の紙面と同じ Noto Sans JP を先頭に置き、明朝を選ばない限り従来の見た目を変えない */
+.paper.font-gothic {
+  font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+}
+
+/* 書式: 太字（紙面全体の基準ウェイト。見出し等の個別指定はそのまま活かす） */
+.paper.weight-bold { font-weight: 700; }
+
 /* ---------------- 送付状 本文書式 ---------------- */
 
 .doc-top { position: relative; margin-bottom: 8mm; }

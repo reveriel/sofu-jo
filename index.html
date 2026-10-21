@@ -22,7 +22,7 @@
 <meta name="twitter:image" content="https://www.reveriel.com/sofu-jo/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f4f8f'/%3E%3Cpath d='M9 8h10l5 5v11a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2V10a2 2 0 0 1 2-2z' fill='none' stroke='%23fff' stroke-width='2.2' stroke-linejoin='round'/%3E%3Cpath d='M18 8v5h5' fill='none' stroke='%23fff' stroke-width='2.2' stroke-linejoin='round'/%3E%3Cpath d='M11 17h9M11 21h6' stroke='%23fff' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="style.css">
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "6fc01bf3ac5e457ba1bd16b91e5b653e"}'></script><!-- End Cloudflare Web Analytics -->
@@ -187,6 +187,28 @@
           </div>
         </div>
       </div>
+    </fieldset>
+
+    <!-- 書式 -->
+    <fieldset class="card">
+      <legend class="card-legend" data-i18n="legendFormat">書式</legend>
+      <div class="grid-2">
+        <div class="field">
+          <span class="field-label" data-i18n="lblFont">字体</span>
+          <div class="seg seg-sm" role="group" aria-label="font">
+            <button type="button" class="seg-btn is-active" data-fontfmt="gothic" aria-pressed="true" data-i18n="optGothic">ゴシック体</button>
+            <button type="button" class="seg-btn" data-fontfmt="mincho" aria-pressed="false" data-i18n="optMincho">明朝体</button>
+          </div>
+        </div>
+        <div class="field">
+          <span class="field-label" data-i18n="lblWeight">太字</span>
+          <div class="seg seg-sm" role="group" aria-label="weight">
+            <button type="button" class="seg-btn is-active" data-weightfmt="normal" aria-pressed="true" data-i18n="optNormal">通常</button>
+            <button type="button" class="seg-btn" data-weightfmt="bold" aria-pressed="false" data-i18n="optBold">太字</button>
+          </div>
+        </div>
+      </div>
+      <p class="hint" data-i18n="hintFormat">字体と太字はプレビューと印刷結果に反映されます。既定のままでも従来と同じ見た目です。</p>
     </fieldset>
 
     <!-- 宛先 -->
